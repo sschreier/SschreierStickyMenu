@@ -1,0 +1,50 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation_menu_home %}
+    {% if shopware.config.sschreierStickymenu.config.showNavigationMenuItemHome %}
+        {% if shopware.config.sschreierStickymenu.config.replaceNavigationMenuItemHomeWithIcon %}
+             <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
+                href="{{ path('frontend.home.page') }}"
+                itemprop="url"
+                title="{{ "general.homeLink"|trans|striptags }}">
+                <div class="main-navigation-link-text">
+                    <span class="icon-home-container">{% sw_icon 'home' %}</span>
+                </div>
+            </a>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% else %}
+    {% endif %}
+{% endblock %}
+
+{% block layout_main_navigation %}
+    {% if shopware.config.sschreierStickymenu.config.stickyMenuIsActive %}
+        {% set activeViewportsStickyMenuString = "" %}
+
+        {% for activeViewportStickyMenu in shopware.config.sschreierStickymenu.config.activeViewportsStickyMenu %}
+            {% set activeViewportsStickyMenuString = activeViewportsStickyMenuString ~ activeViewportStickyMenu %}
+        {% endfor %}
+
+        {% if activeViewportsStickyMenuString == "lgxl" or activeViewportsStickyMenuString == "xllg" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD'" %}
+        {% elseif activeViewportsStickyMenuString == "lg" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'XL'" %}
+        {% elseif activeViewportsStickyMenuString == "xl" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG'" %}
+        {% elseif activeViewportsStickyMenuString == "" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL'" %}    
+        {% endif %}
+
+        <div class="main-navigation-wrapper"
+             data-sticky-menu="true"
+             data-sticky-menu-plugin-options='{
+                "positionStickyMenuIsActive": "{{ shopware.config.sschreierStickymenu.config.positionStickyMenuIsActive }}",
+                "notActiveViewportsStickyMenu": "{{ notActiveViewportsStickyMenuString }}"
+             }'>
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
