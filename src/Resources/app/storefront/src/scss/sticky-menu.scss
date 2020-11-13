@@ -11,7 +11,7 @@ $sschreier-boxshadow-stickymenu: 5px 0 5px rgba(0, 0, 0, 0.5) !default;
   top: 0;
   transition-delay: 0s;
   transition-property: transform;
-  transition-duration: $sschreier-transition-duration-stickymenu+'ms';
+  transition-duration: $sschreier-transition-duration-stickymenu * 1ms;
   transition-timing-function: ease-in-out;
   transform: translateY(-100%);
 
