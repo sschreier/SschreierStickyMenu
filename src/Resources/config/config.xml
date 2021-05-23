@@ -18,6 +18,7 @@
             <label>position from which the sticky menu should be activated</label>
             <label lang="de-DE">Position, ab der das Sticky Menü aktiviert werden soll</label>
             <defaultValue>120</defaultValue>
+            <placeholder>120</placeholder>
         </input-field>
 
         <input-field type="multi-select">
@@ -43,6 +44,7 @@
             <label>background color of the sticky menu</label>
             <label lang="de-DE">Hintergrundfarbe des Sticky Menüs</label>
             <defaultValue>#ffffff</defaultValue>
+            <placeholder>#ffffff</placeholder>
         </input-field>
 
         <input-field type="int">
@@ -50,6 +52,7 @@
             <label>duration of the animation in milliseconds</label>
             <label lang="de-DE">Dauer der Animation in Millisekunden</label>
             <defaultValue>400</defaultValue>
+            <placeholder>400</placeholder>
         </input-field>
 
         <input-field type="text">
@@ -57,6 +60,7 @@
             <label>shadow of the sticky menu</label>
             <label lang="de-DE">Schatten des Sticky Menüs</label>
             <defaultValue>5px 0 5px rgba(0, 0, 0, 0.5)</defaultValue>
+            <placeholder>5px 0 5px rgba(0, 0, 0, 0.5)</placeholder>
         </input-field>
 
         <input-field type="int">
@@ -64,6 +68,7 @@
             <label>z-index value</label>
             <label lang="de-DE">z-index - Wert</label>
             <defaultValue>1000</defaultValue>
+            <placeholder>1000</placeholder>
         </input-field>
     </card>
 

@@ -1,8 +1,8 @@
 {% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
 
 {% block layout_main_navigation_menu_home %}
-    {% if shopware.config.sschreierStickymenu.config.showNavigationMenuItemHome %}
-        {% if shopware.config.sschreierStickymenu.config.replaceNavigationMenuItemHomeWithIcon %}
+    {% if config('sschreierStickymenu.config.showNavigationMenuItemHome') %}
+        {% if config('sschreierStickymenu.config.replaceNavigationMenuItemHomeWithIcon') %}
              <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
                 href="{{ path('frontend.home.page') }}"
                 itemprop="url"
@@ -19,10 +19,10 @@
 {% endblock %}
 
 {% block layout_main_navigation %}
-    {% if shopware.config.sschreierStickymenu.config.stickyMenuIsActive %}
+    {% if config('sschreierStickymenu.config.stickyMenuIsActive') %}
         {% set activeViewportsStickyMenuString = "" %}
 
-        {% for activeViewportStickyMenu in shopware.config.sschreierStickymenu.config.activeViewportsStickyMenu %}
+        {% for activeViewportStickyMenu in config('sschreierStickymenu.config.activeViewportsStickyMenu') %}
             {% set activeViewportsStickyMenuString = activeViewportsStickyMenuString ~ activeViewportStickyMenu %}
         {% endfor %}
 
@@ -39,7 +39,7 @@
         <div class="main-navigation-wrapper"
              data-sticky-menu="true"
              data-sticky-menu-plugin-options='{
-                "positionStickyMenuIsActive": "{{ shopware.config.sschreierStickymenu.config.positionStickyMenuIsActive }}",
+                "positionStickyMenuIsActive": "{{ config('sschreierStickymenu.config.positionStickyMenuIsActive') }}",
                 "notActiveViewportsStickyMenu": "{{ notActiveViewportsStickyMenuString }}"
              }'>
             {{ parent() }}
