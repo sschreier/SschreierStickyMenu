@@ -1,8 +1,10 @@
 {% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
 
 {% block layout_main_navigation_menu_home %}
-    {% if config('sschreierStickymenu.config.showNavigationMenuItemHome') %}
-        {% if config('sschreierStickymenu.config.replaceNavigationMenuItemHomeWithIcon') %}
+    {% block layout_main_navigation_menu_home_before %}{% endblock %}
+
+    {% if config('SschreierStickyMenu.config.showNavigationMenuItemHome') %}
+        {% if config('SschreierStickyMenu.config.replaceNavigationMenuItemHomeWithIcon') %}
              <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
                 href="{{ path('frontend.home.page') }}"
                 itemprop="url"
@@ -16,13 +18,17 @@
         {% endif %}
     {% else %}
     {% endif %}
+
+    {% block layout_main_navigation_menu_home_after %}{% endblock %}
 {% endblock %}
 
 {% block layout_main_navigation %}
-    {% if config('sschreierStickymenu.config.stickyMenuIsActive') %}
+    {% block layout_main_navigation_before %}{% endblock %}
+
+    {% if config('SschreierStickyMenu.config.stickyMenuIsActive') %}
         {% set activeViewportsStickyMenuString = "" %}
 
-        {% for activeViewportStickyMenu in config('sschreierStickymenu.config.activeViewportsStickyMenu') %}
+        {% for activeViewportStickyMenu in config('SschreierStickyMenu.config.activeViewportsStickyMenu') %}
             {% set activeViewportsStickyMenuString = activeViewportsStickyMenuString ~ activeViewportStickyMenu %}
         {% endfor %}
 
@@ -36,15 +42,21 @@
             {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL'" %}    
         {% endif %}
 
+        {% block layout_main_navigation_inner_before %}{% endblock %}
+
         <div class="main-navigation-wrapper"
              data-sticky-menu="true"
              data-sticky-menu-plugin-options='{
-                "positionStickyMenuIsActive": "{{ config('sschreierStickymenu.config.positionStickyMenuIsActive') }}",
+                "positionStickyMenuIsActive": "{{ config('SschreierStickyMenu.config.positionStickyMenuIsActive') }}",
                 "notActiveViewportsStickyMenu": "{{ notActiveViewportsStickyMenuString }}"
              }'>
             {{ parent() }}
         </div>
+
+        {% block layout_main_navigation_inner_after %}{% endblock %}
     {% else %}
         {{ parent() }}
     {% endif %}
+
+    {% block layout_main_navigation_after %}{% endblock %}
 {% endblock %}

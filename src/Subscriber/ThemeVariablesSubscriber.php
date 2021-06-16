@@ -1,51 +1,51 @@
 <?php
-    namespace sschreier\Stickymenu\Subscriber;
+declare(strict_types=1);
 
-    use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-    use Shopware\Storefront\Event\ThemeCompilerEnrichScssVariablesEvent;
-    use Shopware\Core\System\SystemConfig\SystemConfigService;
+namespace Sschreier\StickyMenu\Subscriber;
 
-    class ThemeVariablesSubscriber implements EventSubscriberInterface {
-        /**
-         * @var SystemConfigService
-        */
-        protected $systemConfig;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Event\ThemeCompilerEnrichScssVariablesEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Sschreier\StickyMenu\SschreierStickyMenu;
 
-        public function __construct(SystemConfigService $systemConfig) {
-            $this->systemConfig = $systemConfig;
+class ThemeVariablesSubscriber implements EventSubscriberInterface 
+{
+    private SystemConfigService $systemConfig;
+
+    private string $pluginDomain;
+
+    public function __construct(SystemConfigService $systemConfig, string $pluginDomain)
+    {
+        $this->systemConfig = $systemConfig;
+        $this->pluginDomain = $pluginDomain;
+    }
+
+    public static function getSubscribedEvents(): array 
+    {
+        return [
+            ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables',
+        ];
+    }
+
+    public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event): void 
+    {
+        $salesChannelId = $event->getSalesChannelId();
+
+        $pluginConfig = $this->systemConfig
+            ->getDomain($this->pluginDomain, $salesChannelId, true);
+
+        if (empty($pluginConfig)) {
+            return;
         }
 
-        public static function getSubscribedEvents(): array {
-            return [
-                ThemeCompilerEnrichScssVariablesEvent::class => 'onAddVariables'
-            ];
-        }
-
-        public function onAddVariables(ThemeCompilerEnrichScssVariablesEvent $event) {
-            $backgroundcolorstickymenu = $this->systemConfig->get('sschreierStickymenu.config.backgroundColorStickyMenu', $event->getSalesChannelId());
-            $zindexstickymenu = $this->systemConfig->get('sschreierStickymenu.config.zIndexStickyMenu', $event->getSalesChannelId());
-            $transitiondurationstickymenu = $this->systemConfig->get('sschreierStickymenu.config.transitionDurationStickyMenu', $event->getSalesChannelId());
-            $boxshadowstickymenu = $this->systemConfig->get('sschreierStickymenu.config.boxShadowStickyMenu', $event->getSalesChannelId());
-
-            if(is_null($backgroundcolorstickymenu)){
-                $backgroundcolorstickymenu = "#ffffff";
+        foreach (SschreierStickyMenu::PLUGIN_VARS as $configKey => $scssVariable) {
+            $config = $pluginConfig[$this->pluginDomain . $configKey] ?? null;
+            if ($config) {
+                $event->addVariable(
+                    $scssVariable,
+                    (string) $config
+                );
             }
-
-            if(is_null($zindexstickymenu)){
-                $zindexstickymenu = "1000";
-            }
-
-            if(is_null($transitiondurationstickymenu)){
-                $transitiondurationstickymenu = "400";
-            }
-
-            if(is_null($boxshadowstickymenu)){
-                $boxshadowstickymenu = "5px 0 5px rgba(0, 0, 0, 0.5)";
-            }
-
-            $event->addVariable('sschreier-backgroundcolor-stickymenu', $backgroundcolorstickymenu);
-            $event->addVariable('sschreier-zindex-stickymenu', $zindexstickymenu);
-            $event->addVariable('sschreier-transition-duration-stickymenu', $transitiondurationstickymenu);
-            $event->addVariable('sschreier-boxshadow-stickymenu', $boxshadowstickymenu);
         }
     }
+}
