@@ -8,15 +8,15 @@
 
         <input-field type="bool">
             <name>stickyMenuIsActive</name>
-            <label>activate the sticky menu</label>
-            <label lang="de-DE">Sticky Menü aktivieren</label>
+            <label>active</label>
+            <label lang="de-DE">aktiv</label>
             <defaultValue>true</defaultValue>
         </input-field>
 
         <input-field type="int">
             <name>positionStickyMenuIsActive</name>
-            <label>position from which the sticky menu should be activated</label>
-            <label lang="de-DE">Position, ab der das Sticky Menü aktiviert werden soll</label>
+            <label>position in pixels from which the sticky menu should be active</label>
+            <label lang="de-DE">Position in Pixeln, ab der das Sticky Menü aktiv sein soll</label>
             <defaultValue>120</defaultValue>
             <placeholder>120</placeholder>
         </input-field>
@@ -39,6 +39,22 @@
             <label lang="de-DE">Auflösungen, in denen das Sticky Menü aktiv sein soll</label>
         </input-field>
 
+        <input-field type="int">
+            <name>transitionDurationStickyMenu</name>
+            <label>duration of the animation of the sticky menu in milliseconds</label>
+            <label lang="de-DE">Dauer der Animation des Sticky Menüs in Millisekunden</label>
+            <defaultValue>400</defaultValue>
+            <placeholder>400</placeholder>
+        </input-field>
+
+        <input-field type="int">
+            <name>zIndexStickyMenu</name>
+            <label>z-index value of the sticky menu</label>
+            <label lang="de-DE">z-index - Wert des Sticky Menüs</label>
+            <defaultValue>1000</defaultValue>
+            <placeholder>1000</placeholder>
+        </input-field>
+
         <input-field type="colorpicker">
             <name>backgroundColorStickyMenu</name>
             <label>background color of the sticky menu</label>
@@ -47,28 +63,12 @@
             <placeholder>#ffffff</placeholder>
         </input-field>
 
-        <input-field type="int">
-            <name>transitionDurationStickyMenu</name>
-            <label>duration of the animation in milliseconds</label>
-            <label lang="de-DE">Dauer der Animation in Millisekunden</label>
-            <defaultValue>400</defaultValue>
-            <placeholder>400</placeholder>
-        </input-field>
-
         <input-field type="text">
             <name>boxShadowStickyMenu</name>
             <label>shadow of the sticky menu</label>
             <label lang="de-DE">Schatten des Sticky Menüs</label>
             <defaultValue>5px 0 5px rgba(0, 0, 0, 0.5)</defaultValue>
             <placeholder>5px 0 5px rgba(0, 0, 0, 0.5)</placeholder>
-        </input-field>
-
-        <input-field type="int">
-            <name>zIndexStickyMenu</name>
-            <label>z-index value</label>
-            <label lang="de-DE">z-index - Wert</label>
-            <defaultValue>1000</defaultValue>
-            <placeholder>1000</placeholder>
         </input-field>
     </card>
 
