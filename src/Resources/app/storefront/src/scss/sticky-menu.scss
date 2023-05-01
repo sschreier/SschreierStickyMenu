@@ -1,22 +1,22 @@
-$sschreier-stickymenu-backgroundcolor: #ffffff !default;
-$sschreier-stickymenu-zindex: 1000 !default;
-$sschreier-stickymenu-transition-duration: 400 !default;
-$sschreier-stickymenu-boxshadow: 5px 0 5px rgba(0, 0, 0, 0.5) !default;
+$sschreier-background-color-sticky-menu: #ffffff !default;
+$sschreier-z-index-sticky-menu: 1000 !default;
+$sschreier-transition-duration-sticky-menu: 400 !default;
+$sschreier-box-shadow-sticky-menu: 5px 0 5px rgba(0, 0, 0, 0.5) !default;
 
 .main-navigation-sticky {
-  background: $sschreier-stickymenu-backgroundcolor;
+  background: $sschreier-background-color-sticky-menu;
   position: fixed;
-  z-index: $sschreier-stickymenu-zindex;
+  z-index: $sschreier-z-index-sticky-menu;
   width: 100%;
   top: 0;
   transition-delay: 0s;
   transition-property: transform;
-  transition-duration: $sschreier-stickymenu-transition-duration * 1ms;
+  transition-duration: $sschreier-transition-duration-sticky-menu * 1ms;
   transition-timing-function: ease-in-out;
   transform: translateY(-100%);
 
   &.is--active {
     transform: translateY(0);
-    box-shadow: $sschreier-stickymenu-boxshadow;
+    box-shadow: $sschreier-box-shadow-sticky-menu;
   }
 }

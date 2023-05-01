@@ -32,14 +32,22 @@
             {% set activeViewportsStickyMenuString = activeViewportsStickyMenuString ~ activeViewportStickyMenu %}
         {% endfor %}
 
-        {% if activeViewportsStickyMenuString == "lgxl" or activeViewportsStickyMenuString == "xllg" %}
+        {% if activeViewportsStickyMenuString == "lgxlxxl" or activeViewportsStickyMenuString == "lgxxlxl" or activeViewportsStickyMenuString == "xxllgxl" or activeViewportsStickyMenuString == "xllgxxl" or activeViewportsStickyMenuString == "xxlxllg" or activeViewportsStickyMenuString == "xlxxllg" %}
             {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD'" %}
-        {% elseif activeViewportsStickyMenuString == "lg" %}
-            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'XL'" %}
-        {% elseif activeViewportsStickyMenuString == "xl" %}
+        {% elseif activeViewportsStickyMenuString == "xxlxl" or activeViewportsStickyMenuString == "xlxxl" %}
             {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG'" %}
+        {% elseif activeViewportsStickyMenuString == "lgxxl" or activeViewportsStickyMenuString == "xxllg" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'XL'" %}
+        {% elseif activeViewportsStickyMenuString == "lgxl" or activeViewportsStickyMenuString == "xllg" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'XXL'" %}
+        {% elseif activeViewportsStickyMenuString == "lg" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'XL', 'XXL'" %}
+        {% elseif activeViewportsStickyMenuString == "xl" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XXL'" %}
+        {% elseif activeViewportsStickyMenuString == "xxl" %}
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL'" %}
         {% elseif activeViewportsStickyMenuString == "" %}
-            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL'" %}    
+            {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL', 'XXL'" %}
         {% endif %}
 
         {% block layout_main_navigation_inner_before %}{% endblock %}

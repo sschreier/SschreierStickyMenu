@@ -34,6 +34,11 @@
                     <name>desktop (XL)</name>
                     <name lang="de-DE">Desktop (XL)</name>
                 </option>
+                <option>
+                    <id>xxl</id>
+                    <name>large desktop (XXL)</name>
+                    <name lang="de-DE">großer Desktop (XXL)</name>
+                </option>
             </options>
             <label>viewports in which the sticky menu should be active</label>
             <label lang="de-DE">Auflösungen, in denen das Sticky Menü aktiv sein soll</label>
@@ -59,6 +64,7 @@
             <name>backgroundColorStickyMenu</name>
             <label>background color of the sticky menu</label>
             <label lang="de-DE">Hintergrundfarbe des Sticky Menüs</label>
+            <css>sschreier-background-color-sticky-menu</css>
             <defaultValue>#ffffff</defaultValue>
             <placeholder>#ffffff</placeholder>
         </input-field>
