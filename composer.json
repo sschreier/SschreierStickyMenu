@@ -1,9 +1,9 @@
 {
     "name": "sschreier/sschreierstickymenu",
     "description": "Sticky Menü",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "type": "shopware-platform-plugin",
-    "license": "proprietary",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Sebastian Schreier",
