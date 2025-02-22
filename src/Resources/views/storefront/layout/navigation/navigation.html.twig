@@ -5,18 +5,24 @@
 
     {% if config('SschreierStickyMenu.config.showNavigationMenuItemHome') %}
         {% if config('SschreierStickyMenu.config.replaceNavigationMenuItemHomeWithIcon') %}
-             <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
-                href="{{ path('frontend.home.page') }}"
-                itemprop="url"
-                title="{{ "general.homeLink"|trans|striptags }}">
-                <div class="main-navigation-link-text">
-                    <span class="icon-home-container">{% sw_icon 'home' %}</span>
-                </div>
-            </a>
+            {% block layout_main_navigation_menu_home_custom %}
+                <a class="nav-link main-navigation-link nav-item-{{ context.salesChannel.navigationCategoryId }} {% if controllerAction is same as('home') %} active{% endif %} home-link"
+                   href="{{ path('frontend.home.page') }}"
+                   itemprop="url"
+                   title="{{ homeLabel|striptags }}">
+                    <div class="main-navigation-link-text">
+                        <span class="icon-home-container">{% sw_icon 'home' %}</span>
+                        <span class="d-none" itemprop="name">{{ homeLabel|sw_sanitize }}</span>
+                    </div>
+                </a>
+            {% endblock %}
         {% else %}
+            {% block layout_main_navigation_menu_home_default_before %}{% endblock %}
+
             {{ parent() }}
+
+            {% block layout_main_navigation_menu_home_default_after %}{% endblock %}
         {% endif %}
-    {% else %}
     {% endif %}
 
     {% block layout_main_navigation_menu_home_after %}{% endblock %}
@@ -63,7 +69,11 @@
 
         {% block layout_main_navigation_inner_after %}{% endblock %}
     {% else %}
+        {% block layout_main_navigation_default_before %}{% endblock %}
+
         {{ parent() }}
+
+        {% block layout_main_navigation_default_after %}{% endblock %}
     {% endif %}
 
     {% block layout_main_navigation_after %}{% endblock %}

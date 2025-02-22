@@ -1,8 +1,7 @@
-import Plugin from 'src/plugin-system/plugin.class';
 import DomAccess from 'src/helper/dom-access.helper';
 import ViewportDetection from 'src/helper/viewport-detection.helper';
 
-export default class StickyMenuPlugin extends Plugin {
+export default class StickyMenuPlugin extends window.PluginBaseClass {
     static options = {
         cloneMainNavigationStickyClass: 'main-navigation-sticky',
         positionStickyMenuIsActive: 120,
@@ -14,7 +13,7 @@ export default class StickyMenuPlugin extends Plugin {
 
         this.subscribeViewportEvent();
 
-        if(this.pluginShouldBeActive()){
+        if (this.pluginShouldBeActive()) {
             this.initializePlugin();
         }
     }
@@ -39,8 +38,8 @@ export default class StickyMenuPlugin extends Plugin {
     onScroll(){
         const scrollPosition = document.documentElement.scrollTop;
 
-        if(scrollPosition > this.options.positionStickyMenuIsActive){
-            if(!this._mainNavigationClone.classList.contains('is--active')) {
+        if (scrollPosition > this.options.positionStickyMenuIsActive) {
+            if (!this._mainNavigationClone.classList.contains('is--active')) {
                 this._mainNavigationClone.classList.add('is--active');
             }
         } else {
@@ -57,27 +56,23 @@ export default class StickyMenuPlugin extends Plugin {
     }
 
     subscribeViewportEvent(){
-        document.$emitter.subscribe('Viewport/hasChanged', this.update, {scope: this});
+        document.$emitter.subscribe('Viewport/hasChanged', this.update, { scope: this });
     }
 
     update(){
-        if(this.pluginShouldBeActive()){
-            if(this.initialized) return;
+        if (this.pluginShouldBeActive()) {
+            if (this.initialized) return;
 
             this.initializePlugin();
-        }else{
-            if(!this.initialized) return;
+        } else {
+            if (!this.initialized) return;
 
             this.destroy();
         }
     }
 
-    pluginShouldBeActive(){
-        if((this.options.notActiveViewportsStickyMenu).includes(ViewportDetection.getCurrentViewport())){
-            return false;
-        }
-
-        return true;
+    pluginShouldBeActive() {
+        return !(this.options.notActiveViewportsStickyMenu).includes(ViewportDetection.getCurrentViewport());
     }
 
     initializePlugin() {
