@@ -1,7 +1,7 @@
 {
     "name": "sschreier/sschreierstickymenu",
-    "description": "Sticky Menü",
-    "version": "1.2.3",
+    "description": "sticky menu",
+    "version": "1.2.4",
     "type": "shopware-platform-plugin",
     "license": "GPL-3.0-or-later",
     "authors": [
@@ -20,7 +20,7 @@
         "copyright": "Sebastian Schreier",
         "label": {
             "de-DE": "Sticky Menü",
-            "en-GB": "Sticky Menu"
+            "en-GB": "sticky menu"
         },
         "description": {
             "de-DE": "Eine Erweiterung für ein Sticky Menü ab 992 Pixel, bei dem auch der Navigationsmenüpunkt Home ausgeblendet oder durch ein Haus - Icon ersetzt werden kann.",

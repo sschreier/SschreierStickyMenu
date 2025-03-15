@@ -1,6 +1,6 @@
-# A Sticky Menu for Shopware 6
+# An extension for a sticky menu for Shopware 6
 
-A shopware 6 extension for a sticky menu from _992 pixels_. The navigation menu item _Home_ can also be hidden or can be replaced by a house icon.
+An extension for a sticky menu from _992 pixels_. The navigation menu item _Home_ can also be hidden or can be replaced by a house icon.
 
 ## Possible Configurations
  - activate the sticky menu
@@ -20,7 +20,7 @@ After changing settings specifically for the appearance of the sticky menu (*1),
 3. Click on the button "Save"
 
 ## How to install the extension
-### via console (recommended)
+### via zip and console (recommended)
 1. Download the latest _SschreierStickyMenu-master.zip_.
 2. Unzip the zip file and rename the folder to _SschreierStickyMenu_. 
 3. Move the folder to the project folder _custom/plugins/_ .
@@ -43,7 +43,15 @@ bin/console plugin:install --activate SschreierStickyMenu
 ],
 ```
 
-2. Connect to the console via ssh and install the plugin source code via the command
+2. Connect to the console via ssh and install the plugin via the command
+```
+composer require sschreier/sschreierstickymenu
+bin/console plugin:refresh
+bin/console plugin:install --activate SschreierStickyMenu
+```
+
+### via https://packagist.org
+- Connect to the console via ssh and install the plugin via the command
 ```
 composer require sschreier/sschreierstickymenu
 bin/console plugin:refresh
@@ -57,7 +65,7 @@ bin/console plugin:install --activate SschreierStickyMenu
 4. Upload the zip in the Shopware Administration.
 5. Install & Activate the extension.
 
-#### Plugin update (zip)
+#### extension update (zip)
 1. Download the latest _SschreierStickyMenu-master.zip_.
 2. Unzip the zip file and rename the folder to _SschreierStickyMenu_.
 3. Zip the folder to _SschreierStickyMenu.zip_.
