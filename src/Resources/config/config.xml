@@ -47,15 +47,7 @@
 
     <card>
         <title>design of the sticky menu</title>
-        <title lang="de-DE">Gestaltung des Sticky-Menü</title>
-
-        <input-field type="int">
-            <name>transitionDurationStickyMenu</name>
-            <label>duration of the animation in milliseconds</label>
-            <label lang="de-DE">Dauer der Animation in Millisekunden</label>
-            <defaultValue>400</defaultValue>
-            <placeholder>400</placeholder>
-        </input-field>
+        <title lang="de-DE">Gestaltung des Sticky-Menüs</title>
 
         <input-field type="int">
             <name>zIndexStickyMenu</name>

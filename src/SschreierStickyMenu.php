@@ -15,7 +15,6 @@ class SschreierStickyMenu extends Plugin
 {
     const PLUGIN_CONFIG_VARS = [
         'zIndexStickyMenu',
-        'transitionDurationStickyMenu',
         'boxShadowStickyMenu'
     ];
 }

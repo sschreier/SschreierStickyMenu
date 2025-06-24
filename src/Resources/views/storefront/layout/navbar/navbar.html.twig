@@ -1,35 +1,7 @@
-{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+{% sw_extends '@Storefront/storefront/layout/navbar/navbar.html.twig' %}
 
-{% block layout_main_navigation_menu_home %}
-    {% block layout_main_navigation_menu_home_before %}{% endblock %}
-
-    {% if config('SschreierStickyMenu.config.showNavigationMenuItemHome') %}
-        {% if config('SschreierStickyMenu.config.replaceNavigationMenuItemHomeWithIcon') %}
-            {% block layout_main_navigation_menu_home_custom %}
-                <a class="nav-link main-navigation-link nav-item-{{ context.salesChannel.navigationCategoryId }} {% if controllerAction is same as('home') %} active{% endif %} home-link"
-                   href="{{ path('frontend.home.page') }}"
-                   itemprop="url"
-                   title="{{ homeLabel|striptags }}">
-                    <div class="main-navigation-link-text">
-                        <span class="icon-home-container">{% sw_icon 'home' %}</span>
-                        <span class="d-none" itemprop="name">{{ homeLabel|sw_sanitize }}</span>
-                    </div>
-                </a>
-            {% endblock %}
-        {% else %}
-            {% block layout_main_navigation_menu_home_default_before %}{% endblock %}
-
-            {{ parent() }}
-
-            {% block layout_main_navigation_menu_home_default_after %}{% endblock %}
-        {% endif %}
-    {% endif %}
-
-    {% block layout_main_navigation_menu_home_after %}{% endblock %}
-{% endblock %}
-
-{% block layout_main_navigation %}
-    {% block layout_main_navigation_before %}{% endblock %}
+{% block layout_navbar_nav_element %}
+    {% block layout_navbar_nav_element_before %}{% endblock %}
 
     {% if config('SschreierStickyMenu.config.stickyMenuIsActive') %}
         {% set activeViewportsStickyMenuString = "" %}
@@ -56,9 +28,9 @@
             {% set notActiveViewportsStickyMenuString = "'XS', 'SM', 'MD', 'LG', 'XL', 'XXL'" %}
         {% endif %}
 
-        {% block layout_main_navigation_inner_before %}{% endblock %}
+        {% block layout_navbar_nav_element_inner_before %}{% endblock %}
 
-        <div class="main-navigation-wrapper"
+        <div class="navbar-wrapper"
              data-sticky-menu="true"
              data-sticky-menu-plugin-options='{
                 "positionStickyMenuIsActive": "{{ config('SschreierStickyMenu.config.positionStickyMenuIsActive') }}",
@@ -67,14 +39,44 @@
             {{ parent() }}
         </div>
 
-        {% block layout_main_navigation_inner_after %}{% endblock %}
+        {% block layout_navbar_nav_element_inner_after %}{% endblock %}
     {% else %}
-        {% block layout_main_navigation_default_before %}{% endblock %}
+        {% block layout_navbar_nav_element_default_before %}{% endblock %}
 
         {{ parent() }}
 
-        {% block layout_main_navigation_default_after %}{% endblock %}
+        {% block layout_navbar_nav_element_default_after %}{% endblock %}
     {% endif %}
 
-    {% block layout_main_navigation_after %}{% endblock %}
+    {% block layout_navbar_nav_element_after %}{% endblock %}
+{% endblock %}
+
+{% block layout_navbar_menu_home %}
+    {% block layout_navbar_menu_home_before %}{% endblock %}
+
+    {% if config('SschreierStickyMenu.config.showNavigationMenuItemHome') %}
+        {% if config('SschreierStickyMenu.config.replaceNavigationMenuItemHomeWithIcon') %}
+            {% block layout_navbar_menu_home_custom %}
+                <li class="nav-item nav-item-{{ context.salesChannel.navigationCategoryId }}">
+                    <a class="nav-link main-navigation-link home-link root nav-item-{{ context.salesChannel.navigationCategoryId }}-link"
+                       href="{{ path('frontend.home.page') }}"
+                       itemprop="url"
+                       title="{{ homeLabel|striptags }}">
+                        <div class="main-navigation-link-text">
+                            <span class="icon-home-container">{% sw_icon 'home' %}</span>
+                            <span class="d-none" itemprop="name">{{ homeLabel|sw_sanitize }}</span>
+                        </div>
+                    </a>
+                </li>
+            {% endblock %}
+        {% else %}
+            {% block layout_navbar_menu_home_default_before %}{% endblock %}
+
+            {{ parent() }}
+
+            {% block layout_navbar_menu_home_default_after %}{% endblock %}
+        {% endif %}
+    {% endif %}
+
+    {% block layout_navbar_menu_home_after %}{% endblock %}
 {% endblock %}
